@@ -10,3 +10,4 @@ data_activity <- data %>%
 ggplot(data_activity, aes(x = interval, y = steps)) + geom_line()
 
 max_interval <- c(data_activity[[which.max(data_activity$steps),1]])
+max_interval

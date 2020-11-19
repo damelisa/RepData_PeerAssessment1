@@ -1,7 +1,7 @@
 library(dplyr)
-library(rqdatatable)
 
 total_na <- sum(is.na(data$steps))
+total_na
 
 mean_interval <- data %>% 
   group_by(date) %>%
@@ -17,9 +17,12 @@ data_corr <- data %>%
 
 data_total2 <- data_corr %>% 
   group_by(date) %>%
-  summarise(steps = mean(steps, na.rm = TRUE))
+  summarise(steps = sum(steps, na.rm = TRUE))
 
-qplot(data_total2$steps, geom="histogram", xlab = "total steps per day")
+qplot(data_total2$steps, geom="histogram", xlab = "total steps per day", bins = 30)
 
 mean_steps2 <- mean(data_total2$steps, na.rm=TRUE)
+mean_steps2
+
 median_steps2 <- median(data_total2$steps, na.rm=TRUE)
+median_steps2

@@ -1,12 +1,9 @@
 library(dplyr)
-library(rqdatatable)
 library(ggplot2)
 
 # Set weekdays from german to english
 Sys.setlocale("LC_TIME", "C")
 format(Sys.Date(), "%Y-%b-%d")
-
-total_na <- sum(is.na(data$steps))
 
 mean_interval <- data %>% 
   group_by(date) %>%
@@ -26,7 +23,7 @@ weekdays1 <- c('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday')
 #Use `%in%` and `weekdays` to create a logical vector
 #convert to `factor` and specify the `levels/labels`
 data_corr2$wDay <- factor((weekdays(data_corr2$date) %in% weekdays1), 
-                   levels=c(FALSE, TRUE), labels=c('weekend', 'weekday'))
+                   levels=c(TRUE, FALSE), labels=c('weekday', 'weekend'))
 
 data_week <- data_corr2 %>%
   group_by(date) %>%
